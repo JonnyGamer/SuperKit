@@ -32,7 +32,7 @@ public class EditNode {
     public var y: Double { get { node.y } set { node.y = newValue } }
     public var xScale: Double { get { node.xScale } set { node.xScale = newValue } }
     public var yScale: Double { get { node.yScale } set { node.yScale = newValue } }
-    public var scale: Double { get { .nan } set { node.scale(newValue) } }
+    public var scale: Double { get { .nan } set { node.setScale(newValue) } }
     var defaultScale: Double { get { node.defaultScale } set { node.defaultScale = newValue } }
     public var layer: Double { get { node.layer } set { node.layer = newValue } }
     public var name: String { get { node.name } set { node.name = newValue } }
