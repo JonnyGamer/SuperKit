@@ -74,37 +74,39 @@ public class Node: Codable {
         return self
     }
     
-    var x: Double {
+    /// The x-coordinate.
+    public var x: Double {
         get { __node__.position.x }
         set { __node__.position.x = newValue }
     }
     
-    var y: Double {
+    /// The y-coordinate.
+    public var y: Double {
         get { __node__.position.y }
         set { __node__.position.y = newValue }
     }
     
     //var x: Double = 0 { willSet { __node__.position.x = newValue } }
-    /// The x-coordinate.
-    @discardableResult public func x(_ newValue: Double, edit: (() -> ())? = nil) -> Self { _edit(newValue, edit, \.x) }
+    
+    //@discardableResult public func x(_ newValue: Double, edit: (() -> ())? = nil) -> Self { _edit(newValue, edit, \.x) }
     
     //var y: Double = 0 { willSet { __node__.position.y = newValue } }
-    /// The y-coordinate.
-    @discardableResult public func y(_ newValue: Double, edit: (() -> ())? = nil) -> Self { _edit(newValue, edit, \.y) }
+    //@discardableResult public func y(_ newValue: Double, edit: (() -> ())? = nil) -> Self { _edit(newValue, edit, \.y) }
     
-    var layer: Double = 0 { willSet { __node__.zPosition = newValue } }
     /// A higher `layer` means this node is *above* lower ones.
-    @discardableResult public func layer(_ newValue: Double, edit: (() -> ())? = nil) -> Self { _edit(newValue, edit, \.layer) }
+    public var layer: Double = 0 { willSet { __node__.zPosition = newValue } }
+    //@discardableResult public func layer(_ newValue: Double, edit: (() -> ())? = nil) -> Self { _edit(newValue, edit, \.layer) }
     
-    var xScale: Double = 1.0 { willSet { __node__.xScale = newValue } }
     /// Make your node wider or skinnier. A negative xScale will make a mirror image.
-    @discardableResult public func xScale(_ newValue: Double, edit: (() -> ())? = nil) -> Self { _edit(newValue, edit, \.xScale) }
+    var xScale: Double = 1.0 { willSet { __node__.xScale = newValue } }
+    // @discardableResult public func xScale(_ newValue: Double, edit: (() -> ())? = nil) -> Self { _edit(newValue, edit, \.xScale) }
     
     var flipped: Bool { get { self.xScale < 0 } set { self.xScale = abs(self.xScale) * (newValue ? -1 : 1) } }
     
+    /// Make your node taller or shorter. A negative yScale will make a mirror image upsidedown.
     var yScale: Double = 1.0 { willSet { __node__.yScale = newValue } }
     /// Make your node taller or shorter. A negative yScale will make a mirror image upsidedown.
-    @discardableResult public func yScale(_ newValue: Double, edit: (() -> ())? = nil) -> Self { _edit(newValue, edit, \.yScale) }
+    //@discardableResult public func yScale(_ newValue: Double, edit: (() -> ())? = nil) -> Self { _edit(newValue, edit, \.yScale) }
     
     var scalePreserveFlip: Double { get { if abs(xScale) == yScale { return yScale }; return .nan } set {
         yScale = newValue
@@ -112,24 +114,25 @@ public class Node: Codable {
     } }
     
     var defaultScale: Double = 1.0
-    var scale: Double { get { if xScale == yScale { return yScale }; return .nan } set { scale(newValue) } }
     /// The scale multiplies the size of the node. A bigger scale means the node apears bigger.
-    @discardableResult public func scale(_ newValue: Double, edit: (() -> ())? = nil) -> Self { _edit(newValue, edit, \.xScale, \.yScale) }
+    public var scale: Double { get { if xScale == yScale { return yScale }; return .nan } set { setScale(newValue) } }
+    /// The scale multiplies the size of the node. A bigger scale means the node apears bigger.
+    @discardableResult public func setScale(_ newValue: Double, edit: (() -> ())? = nil) -> Self { _edit(newValue, edit, \.xScale, \.yScale) }
     
-    var name: String = "" { willSet { __node__.name = newValue } }
     /// Give your node a name so you can identify it later.
-    @discardableResult public func name(_ newValue: String, edit: (() -> ())? = nil) -> Self { _edit(newValue, edit, \.name) }
+    public var name: String = "" { willSet { __node__.name = newValue } }
+    // @discardableResult public func name(_ newValue: String, edit: (() -> ())? = nil) -> Self { _edit(newValue, edit, \.name) }
     
-    var rotation: Double = 0.0 { willSet { __node__.zRotation = newValue.toRadians() } }
     /// Rotation is marked in degrees. To turn your node upside-down, set `rotation` to 180.
-    @discardableResult public func rotation(_ newValue: Double, edit: (() -> ())? = nil) -> Self { _edit(newValue, edit, \.rotation) }
+    public var rotation: Double = 0.0 { willSet { __node__.zRotation = newValue.toRadians() } }
+    // @discardableResult public func rotation(_ newValue: Double, edit: (() -> ())? = nil) -> Self { _edit(newValue, edit, \.rotation) }
     
-    var visibility: Double = 100.0 { willSet { __node__.alpha = newValue/100 } }
     /// The visibility percentage of your node. To make your node invisible, set `visibility` to 0.
-    @discardableResult public func visibility(_ newValue: Double, edit: (() -> ())? = nil) -> Self { _edit(newValue, edit, \.visibility) }
+    var visibility: Double = 100.0 { willSet { __node__.alpha = newValue/100 } }
+    // @discardableResult public func visibility(_ newValue: Double, edit: (() -> ())? = nil) -> Self { _edit(newValue, edit, \.visibility) }
     
     
-    func isTouching(_ thisNode: Node) -> Bool {
+    public func isTouching(_ thisNode: Node) -> Bool {
         return __node__.physicsBody?.allContactedBodies().contains(where: { $0.node === thisNode.__node__ }) ?? false
     }
     
@@ -158,7 +161,7 @@ public class Node: Codable {
         }
     }
     
-    func removePropety(_ property: Property) {
+    public func removePropety(_ property: Property) {
         _removingProperty(property)
         self.properties[property] = nil
     }
