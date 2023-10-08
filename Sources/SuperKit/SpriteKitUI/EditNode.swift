@@ -39,6 +39,23 @@ public class EditNode {
     public var rotation: Double { get { node.rotation } set { node.rotation = newValue } }
     public var visibility: Double { get { node.visibility } set { node.visibility = newValue } }
     
+    public var minY: Double {
+        get { y - height/2 }
+        set { y = newValue + height/2 }
+    }
+    public var maxY: Double {
+        get { y + height/2 }
+        set { y = newValue - height/2 }
+    }
+    public var minX: Double {
+        get { x - width/2 }
+        set { x = newValue + width/2 }
+    }
+    public var maxX: Double {
+        get { x + width/2 }
+        set { x = newValue - width/2 }
+    }
+    
     public var width: Double {
         get { (node as? Size)?.width ?? .nan }
         set { (node as? Size)?.width = newValue }
