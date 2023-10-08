@@ -86,6 +86,26 @@ public class Node: Codable {
         set { __node__.position.y = newValue }
     }
     
+    private var width: Double { (self as? Size)?.width ?? .nan }
+    private var height: Double { (self as? Size)?.height ?? .nan }
+    
+    public var minY: Double {
+        get { y - height/2 }
+        set { y = newValue + height/2 }
+    }
+    public var maxY: Double {
+        get { y + height/2 }
+        set { y = newValue - height/2 }
+    }
+    public var minX: Double {
+        get { x - width/2 }
+        set { x = newValue + width/2 }
+    }
+    public var maxX: Double {
+        get { x + width/2 }
+        set { x = newValue - width/2 }
+    }
+    
     //var x: Double = 0 { willSet { __node__.position.x = newValue } }
     
     //@discardableResult public func x(_ newValue: Double, edit: (() -> ())? = nil) -> Self { _edit(newValue, edit, \.x) }
