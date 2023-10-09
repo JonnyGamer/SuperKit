@@ -68,7 +68,8 @@ public extension CGPoint {
         return .init(x: 0.5, y: 0.5)
     }
     static var midPoint: Self {
-        return .init(x: trueScene.size.width/2, y: trueScene.size.height/2)
+        return .init(x: width/2, y: height/2)
+        //return .init(x: trueScene.size.width/2, y: trueScene.size.height/2)
     }
 }
 public extension CGSize {
