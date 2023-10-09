@@ -92,10 +92,17 @@ public class Node: Codable {
     /// Determine if two nodes are overlapping
     public func overlaps(_ node: Node) -> Bool {
         let obj1 = self; let obj2 = node
-        return obj1.x < obj2.x + obj2.width &&
-             obj1.x + obj1.width > obj2.x &&
-             obj1.y < obj2.y + obj2.height &&
-             obj1.y + obj1.height > obj2.y;
+        return obj2.minX < obj1.maxX && obj1.minX < obj2.maxX
+                &&
+               obj2.minY < obj1.maxY && obj1.minY < obj2.maxY
+//        []   []
+//         []
+//
+//
+//        return obj1.x < obj2.x + obj2.width &&
+//             obj1.x + obj1.width > obj2.x &&
+//             obj1.y < obj2.y + obj2.height &&
+//             obj1.y + obj1.height > obj2.y;
     }
     
     public var minY: Double {
