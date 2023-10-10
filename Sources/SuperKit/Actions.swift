@@ -213,8 +213,9 @@ public class Action { // Codable, Equatable, Hashable
                 }
             } else if let y = y {
                 a = SKAction.moveTo(y: y, duration: _duration).then(t)
+            } else {
+                a = SKAction()
             }
-            return SKAction()
         case let .moveBy(x: x, y: y):
             let x = x ?? 0
             let y = y ?? 0
