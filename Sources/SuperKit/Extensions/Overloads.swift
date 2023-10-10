@@ -7,6 +7,12 @@
 
 import Foundation
 
+public extension Array {
+    func random() -> Element {
+        return randomElement()!
+    }
+}
+
 // OptionalProtocol is a custom protocol that you'll define
 public protocol OptionalProtocol {
     associatedtype Wrapped
