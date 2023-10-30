@@ -7,7 +7,7 @@
 
 import SpriteKit
  
-public class Circle: Node, Colorable {
+open class Circle: Node, Colorable {
     @objc public override var __node__: SKNode { __shape__ }
     private(set) public var __shape__: SKShapeNode!
     override var type: NodeTypes { .Circle }

@@ -10,7 +10,7 @@ import SpriteKit
 /// Edit this to do some interesting things lol
 public var defaultScales: [String : Double] = [:]
 
-public class Image: Node, Size, Colorable {
+open class Image: Node, Size, Colorable {
     public override var __node__: SKNode { __sprite__ }
     private(set) public var __sprite__: SKSpriteNode!
     func emptySprite() { __sprite__.texture = SKSpriteNode(color: .red, size: .hundred).texture }

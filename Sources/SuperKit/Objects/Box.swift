@@ -7,7 +7,7 @@
 
 import SpriteKit
 
-public class Box: Node, Size, Colorable {
+open class Box: Node, Size, Colorable {
     @objc public override var __node__: SKNode { __sprite__ }
     private(set) public var __sprite__: SKSpriteNode!
     override var type: NodeTypes { .Box }

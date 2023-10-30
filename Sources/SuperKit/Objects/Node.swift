@@ -7,7 +7,7 @@
 
 import SpriteKit
 
-public class Node: Codable {
+open class Node: Codable {
     @objc private(set) public var __node__: SKNode = SKNode()
     public var node: Node { return self }
     public var id: Int { willSet {

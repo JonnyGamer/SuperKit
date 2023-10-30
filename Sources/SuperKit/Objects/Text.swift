@@ -7,7 +7,7 @@
 
 import SpriteKit
 
-public class Text: Node, Colorable {
+open class Text: Node, Colorable {
     @objc public override var __node__: SKNode { __text__ }
     private(set) public var __text__: SKLabelNode!
     override var type: NodeTypes { .Text }
