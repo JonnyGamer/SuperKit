@@ -233,6 +233,10 @@ public class SnakeScene: Scene {
     let snake = Snake()
     let grid = Grid.init(width: 10, height: 10)
     
+    public init() {
+        
+    }
+    
     public func began() {
         
         backgroundColor = .black
