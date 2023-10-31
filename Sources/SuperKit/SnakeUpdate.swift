@@ -17,26 +17,26 @@ public extension Action {
 }
 
 public struct Location: Hashable {
-    var x: Int
-    var y: Int
-    func left() -> Location {
+    public var x: Int
+    public var y: Int
+    public func left() -> Location {
         return Location.init(x: x-1, y: y)
     }
-    func right() -> Location {
+    public func right() -> Location {
         return Location.init(x: x+1, y: y)
     }
-    func up() -> Location {
+    public func up() -> Location {
         return Location.init(x: x, y: y+1)
     }
-    func down() -> Location {
+    public func down() -> Location {
         return Location.init(x: x, y: y-1)
     }
-    func moveDirection(_ dir: Direction) -> Location {
+    public func moveDirection(_ dir: Direction) -> Location {
         let (dx, dy) = dir.diff()
         return Location.init(x: x + dx, y: y + dy)
     }
-    static var zero: Self { return .init(x: 0, y: 0) }
-    static var unknown: Self { return .init(x: .min, y: .min) }
+    public static var zero: Self { return .init(x: 0, y: 0) }
+    public static var unknown: Self { return .init(x: .min, y: .min) }
 }
 
 public class Snake {
