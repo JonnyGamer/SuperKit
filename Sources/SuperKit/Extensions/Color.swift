@@ -96,6 +96,7 @@ public struct Color: Codable, Equatable, Hashable {
     public static var purple: Self { Color.init(hex: "885ca7") }
     public static var white: Self { Color.init(hex: "ffffff") }
     public static var redSelection: Self { Color.init(hex: "ff8888") }
+    public static var red: Self { Color.init(hex: "ff8888") }
     public static var clear: Self { Color.init(r: UInt8.zero, g: 0, b: 0, a: 0) }
 }
 
