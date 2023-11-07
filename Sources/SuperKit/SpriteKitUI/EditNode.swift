@@ -12,10 +12,10 @@ public var this: EditNode {
 }
 
 public class EditNode {
-    var node: Node
+    public var node: Node
     //var image: Image { node as! Image }
     //var box: Box { node as! Box }
-    var physics: Physics { node as! Physics }
+    public var physics: Physics { node as! Physics }
     var text: Text { node as! Text }
     var vstack: VStack { node as! VStack }
     var hstack: HStack { node as! HStack }
@@ -27,6 +27,7 @@ public class EditNode {
     
     public func centerScreen() { node.__node__.centerAt(.midPoint) }
     public func keepInsideScreen() { node.__node__.keepInside(.screenSize) }
+    public func removeAllChildren() { node.removeAllChildren() }
     
     public var x: Double { get { node.x } set { node.x = newValue } }
     public var y: Double { get { node.y } set { node.y = newValue } }

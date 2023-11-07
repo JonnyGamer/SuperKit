@@ -7,6 +7,12 @@
 
 import Foundation
 
+public extension Array where Element: Node {
+    func contains<T: Node>(_ this: T) -> Bool {
+        return self.contains { $0.id == this.id }
+    }
+}
+
 public extension Action {
     static func gameLoop(fps: Double, code: @escaping () -> ()) -> Action {
         return Action.sequence([
@@ -190,6 +196,13 @@ public class Grid: Node {
         if y >= height { return }
         tiles[y*width + x].self {
             edit()
+        }
+    }
+    
+    
+    public override func removeAllChildren() {
+        allTiles {
+            this.removeAllChildren()
         }
     }
     
