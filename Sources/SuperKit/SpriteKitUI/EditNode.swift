@@ -45,6 +45,18 @@ public class EditNode {
     public var minX: Double { get { node.minX } set { node.minX = newValue } }
     public var maxX: Double { get { node.maxX } set { node.maxX = newValue } }
     
+    
+    public var value: String {
+        get { (node as? Tile)?.value ?? "" }
+        set { (node as? Tile)?.value = newValue }
+    }
+    public var row: Int {
+        get { (node as? Tile)?.row ?? 0 }
+    }
+    public var column: Int {
+        get { (node as? Tile)?.column ?? 0 }
+    }
+    
     public var width: Double {
         get { (node as? Size)?.width ?? .nan }
         set { (node as? Size)?.width = newValue }
