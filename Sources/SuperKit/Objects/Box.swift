@@ -23,6 +23,16 @@ open class Box: Node, Size, Colorable {
     }
     
     @discardableResult
+    public init(width: Int, height: Int,_ execute: (() -> ())? = nil) {
+        __sprite__ = SKSpriteNode.init(color: .white, size: .ratio(Double(width), Double(height)))
+        self.width = Double(width)
+        self.height = Double(height)
+        super.init()
+        update()
+        s(execute)
+    }
+    
+    @discardableResult
     init(image: String,_ execute: (() -> ())? = nil) {
         __sprite__ = SKSpriteNode.init(imageNamed: image)
         self.width = __sprite__.size.width

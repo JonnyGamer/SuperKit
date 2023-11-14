@@ -150,6 +150,12 @@ public class Snake {
     }
 }
 
+extension Array {
+    func only(_ element: Element) -> Bool where Element: Hashable & Equatable {
+        return Set(self) == [element]
+    }
+}
+
 public enum Direction {
     case up, down, left, right, none
     func diff() -> (dx: Int, dy: Int) {
