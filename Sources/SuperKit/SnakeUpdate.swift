@@ -150,7 +150,7 @@ public class Snake {
     }
 }
 
-extension Array {
+public extension Array {
     func only(_ element: Element) -> Bool where Element: Hashable & Equatable {
         return Set(self) == [element]
     }
