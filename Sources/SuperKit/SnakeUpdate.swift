@@ -175,6 +175,8 @@ public enum Direction {
 public class Tile: Box {
     public var column: Int
     public var row: Int
+//    var box: Grid?
+    
     public init(column: Int, row: Int, width: Double, height: Double,_ execute: (() -> ())? = nil) {
         self.column = column
         self.row = row
@@ -182,6 +184,10 @@ public class Tile: Box {
         
         s(execute)
     }
+    
+//    public var left: Tile {
+//
+//    }
     
     required public init(from decoder: Decoder) throws {
         fatalError("init(from:) has not been implemented")
@@ -206,7 +212,7 @@ public class Grid: Node {
         return Set(allLocations).subtracting(not).randomElement()!
     }
     
-    private var tiles: [Box] = []
+    private var tiles: [Tile] = []
     
     public func tile(x: Int, y: Int,_ edit: @escaping () -> ()) {
         if x < 0 { return }
@@ -218,6 +224,13 @@ public class Grid: Node {
         }
     }
     
+    public func tileValue(x: Int, y: Int) -> String {
+        if x < 0 { return "" }
+        if x >= width { return "" }
+        if y < 0 { return "" }
+        if y >= height { return "" }
+        return tiles[y*width + x].value
+    }
     
     public override func removeAllChildren() {
         allTiles {
