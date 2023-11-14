@@ -175,7 +175,7 @@ public enum Direction {
 public class Tile: Box {
     public var column: Int
     public var row: Int
-    public init(row: Int, column: Int, width: Double, height: Double,_ execute: (() -> ())? = nil) {
+    public init(column: Int, row: Int, width: Double, height: Double,_ execute: (() -> ())? = nil) {
         self.column = column
         self.row = row
         super.init(width: 100, height: 100)
@@ -242,7 +242,7 @@ public class Grid: Node {
         self {
             for y in 0..<height {
                 for x in 0..<width {
-                    let o = Tile.init(row: x, column: y, width: 100, height: 100)
+                    let o = Tile.init(column: x, row: y, width: 100, height: 100)
                     o {
                     //let o = Box.init(width: 100, height: 100) {
                         this.x = Double(x)*100
