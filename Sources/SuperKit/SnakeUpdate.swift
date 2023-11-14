@@ -172,7 +172,26 @@ public enum Direction {
     }
 }
 
-
+public class Tile: Box {
+    public var column: Int
+    public var row: Int
+    public init(column: Int, row: Int, width: Double, height: Double,_ execute: (() -> ())? = nil) {
+        self.column = column
+        self.row = row
+        super.init(width: 100, height: 100)
+        
+        s(execute)
+    }
+    
+    required public init(from decoder: Decoder) throws {
+        fatalError("init(from:) has not been implemented")
+    }
+    
+    public var value: String = ""
+    func isEmtpy() -> Bool {
+        return value.isEmpty
+    }
+}
 
 public class Grid: Node {
 
