@@ -7,10 +7,8 @@
 
 import AudioToolbox
 
-public struct Sound {}
-
-extension Sound {
-    public static func play(sound: String) {
+public struct Sound {
+    public static func play(_ sound: String) {
         SystemSoundID.playFileNamed(fileName: sound, withExtenstion: "mp3")
     }
 }
