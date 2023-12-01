@@ -106,43 +106,43 @@ public class EditNode {
         node.makeEditable()
     }
     
-    var obeysGravity: Bool {
+    public var obeysGravity: Bool {
         get { (node as? Physics)?.obeysGravity ?? false }
         set { (node as? Physics)?.obeysGravity = newValue }
     }
-    var stationary: Bool {
+    public var stationary: Bool {
         get { (node as? Physics)?.stationary ?? true }
         set { (node as? Physics)?.stationary = newValue }
     }
-    var pinned: Bool {
+    public var pinned: Bool {
         get { (node as? Physics)?.pinned ?? true }
         set { (node as? Physics)?.pinned = newValue }
     }
-    var canSpin: Bool {
+    public var canSpin: Bool {
         get { (node as? Physics)?.canSpin ?? false }
         set { (node as? Physics)?.canSpin = newValue }
     }
-    var friction: Double {
+    public var friction: Double {
         get { (node as? Physics)?.friction ?? .nan }
         set { (node as? Physics)?.friction = newValue }
     }
-    var drag: Double {
+    public var drag: Double {
         get { (node as? Physics)?.drag ?? .nan }
         set { (node as? Physics)?.drag = newValue }
     }
-    var bounciness: Double {
+    public var bounciness: Double {
         get { (node as? Physics)?.bounciness ?? .nan }
         set { (node as? Physics)?.bounciness = newValue }
     }
-    var xVelocity: Double {
+    public var xVelocity: Double {
         get { (node as? Physics)?.xVelocity ?? .nan }
         set { (node as? Physics)?.xVelocity = newValue }
     }
-    var yVelocity: Double {
+    public var yVelocity: Double {
         get { (node as? Physics)?.yVelocity ?? .nan }
         set { (node as? Physics)?.yVelocity = newValue }
     }
-    var rotationalVelocity: Double {
+    public var rotationalVelocity: Double {
         get { (node as? Physics)?.rotationalVelocity ?? .nan }
         set { (node as? Physics)?.rotationalVelocity = newValue }
     }
