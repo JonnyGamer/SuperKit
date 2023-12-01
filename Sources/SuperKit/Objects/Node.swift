@@ -74,10 +74,29 @@ open class Node: Codable {
         return self
     }
     
+    var _xDirection: Double = 1
+    var _xVelocity: Double = 0
+    var lastX: Double = 0
+    
+    /// The direction the object was last moved in the x axis, positive 1 for right, negative -1 for left. Will never be 0. Default is 1.
+    public var xDirection: Double {
+        get { self._xDirection }
+    }
+    
+    /// When the object was last moved, what was the velocity in the x axis.
+    public var xVelocity: Double {
+        get { self._xVelocity }
+    }
+    
     /// The x-coordinate.
     public var x: Double {
         get { __node__.position.x }
-        set { __node__.position.x = newValue }
+        set {
+            _xVelocity = newValue - lastX
+            if _xVelocity > 0 { _xDirection = 1;  lastX = self.x }
+            else if _xVelocity < 0 { _xDirection = -1; lastX = self.x }
+            __node__.position.x = newValue
+        }
     }
     
     /// The y-coordinate.
