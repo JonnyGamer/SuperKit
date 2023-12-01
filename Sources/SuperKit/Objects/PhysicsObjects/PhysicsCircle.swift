@@ -38,7 +38,7 @@ public class PhysicsCircle: Circle, Physics {
     
     public var bounciness: Double = 0.0 { willSet { __physics__.restitution = keepInRange(0, newValue/100, 100) } }
     
-    public var xVelocity: Double {
+    public override var xVelocity: Double {
         get { __physics__.velocity.dx }
         set { __physics__.velocity.dx = newValue }
     }
