@@ -1,2 +1,2 @@
-# SuperKit v0.0.25
+# SuperKit v0.0.26
 A SwiftUI approach to SpriteKit
