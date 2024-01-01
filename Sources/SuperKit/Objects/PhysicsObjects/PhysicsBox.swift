@@ -72,6 +72,9 @@ public class PhysicsBox: Box, Physics {
         yVelocity = yVelocity.d
         rotationalVelocity = rotationalVelocity.d
         __node__.physicsBody = __physics__
+        __node__.physicsBody?.collisionBitMask = .max
+        __node__.physicsBody?.contactTestBitMask = .max
+        __node__.physicsBody?.categoryBitMask = .max
     }
     
     private enum CodingKeys: String, CodingKey {
