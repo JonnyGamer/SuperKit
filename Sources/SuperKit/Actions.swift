@@ -14,7 +14,7 @@ public extension EditNode {
 }
 public extension Node {
     func run(_ action: Action) {
-        __node__.run(action.convertToSKAction())
+        __node__.run(action.convertToSKAction(), withKey: action._name)
     }
 }
 public extension Scene {
@@ -22,6 +22,23 @@ public extension Scene {
         trueScene.curr.root.run(action)
     }
 }
+
+public extension EditNode {
+    func killAction(_ named: String) {
+        node.__node__.removeAction(forKey: named)
+    }
+}
+public extension Node {
+    func killAction(_ named: String) {
+        __node__.removeAction(forKey: named)
+    }
+}
+public extension Scene {
+    func killAction(_ named: String) {
+        trueScene.curr.root.__node__.removeAction(forKey: named)
+    }
+}
+
 
 public enum ActionPickers { // Codable, Equatable, Hashable
     case moveTo(x: Double?, y: Double?)
