@@ -28,6 +28,34 @@ import SpriteKit
 //    }
 //}
 
+public func topWall() {
+    let topWall = PhysicsBox(width: 1600, height: 10)
+    topWall.minX = 0
+    topWall.minY = 1000
+    topWall.stationary = true
+}
+public func bottomWall() {
+    let topWall = PhysicsBox(width: 1600, height: 10)
+    topWall.minX = 0
+    topWall.maxY = 0
+    topWall.stationary = true
+}
+
+public func leftWall() {
+    let leftWall = PhysicsBox(width: 1, height: 1000)
+    leftWall.minX = 0
+    leftWall.minY = 0
+    leftWall.stationary = true
+}
+public func rightWall() {
+    let rightWall = PhysicsBox(width: 1, height: 1000)
+    rightWall.maxX = 1600
+    rightWall.minY = 0
+    rightWall.stationary = true
+}
+
+
+
 //public extension Scene {
 public var collidedNodes: [Node] { return trueScene.collidedNodes }
 public var keysPressed: [Key] { return trueScene.keysPressed }
