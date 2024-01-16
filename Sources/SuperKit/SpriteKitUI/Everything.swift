@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SpriteKit
 
 public class Everything {
     private static var o: Everything = Everything()
@@ -37,6 +38,7 @@ public class Everything {
     
     public static func add(_ this: Node) {
         o.add(this)
+        this.__node__.accessibilityLabel = "\(this.id)"
     }
     public func add(_ this: Node) {
         if nodes[this.id] == nil {
@@ -45,6 +47,13 @@ public class Everything {
             this.id = maxId()
         }
         maximumId = max(maximumId, this.id)
+    }
+    
+    public static func get(_ thiss: SKNode?) -> Node? {
+        guard let this = thiss,
+              let ids = this.accessibilityLabel,
+              let id = Int(ids) else { return nil }
+        return o.get(id)
     }
     
     public static func get(_ this: Int) -> Node? {

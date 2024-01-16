@@ -29,6 +29,7 @@ import SpriteKit
 //}
 
 //public extension Scene {
+public var collision: [Node] { return trueScene.collision }
 public var keysPressed: [Key] { return trueScene.keysPressed }
 public var nodesTouching: [Node] { return trueScene.nodesTouching }
 //    func add(_ child: Node) { // <T: Node>

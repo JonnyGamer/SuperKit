@@ -141,8 +141,12 @@ class RootScene: SKScene, SKPhysicsContactDelegate {
     }
 
     // Collision Fest :)
+    var collision: [Node] = []
     func didBegin(_ contact: SKPhysicsContact) {
         curr.curr.collision?()
+        guard let a = Everything.get(contact.bodyA.node) else { return }
+        guard let b = Everything.get(contact.bodyB.node) else { return }
+        collision = [a, b]
     }
     
 }
