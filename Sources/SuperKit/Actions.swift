@@ -58,6 +58,8 @@ public enum ActionPickers { // Codable, Equatable, Hashable
     case scaleBy(dx: Double, dy: Double)
     case none
     case code(() -> ())
+    case setImage(String)
+    case animate(images: [String], fps: Double)
 }
 public enum ActionTimer: String, Codable, Equatable {
     case linear
@@ -163,6 +165,12 @@ public class Action { // Codable, Equatable, Hashable
         return .init(ActionPickers.code(run))
     }
     
+    public static func changeImage(_ name: String) -> Action {
+        return .init(ActionPickers.setImage(name))
+    }
+    public static func animate(_ images: [String], fps: Double) -> Action {
+        return .init(ActionPickers.animate(images: images, fps: fps))
+    }
     
     
     public func setName(_ to: String) -> Action {
@@ -233,6 +241,11 @@ public class Action { // Codable, Equatable, Hashable
             } else {
                 a = SKAction()
             }
+            
+        case let .setImage(name):
+            a = SKAction.animate(with: [SKTexture.init(imageNamed: name)], timePerFrame: 0)
+        case let .animate(images: i, fps: f):
+            a = SKAction.animate(with: i.map { SKTexture.init(imageNamed: $0) }, timePerFrame: f)
         case let .moveBy(x: x, y: y):
             let x = x ?? 0
             let y = y ?? 0
