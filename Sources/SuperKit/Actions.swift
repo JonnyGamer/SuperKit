@@ -58,7 +58,7 @@ public enum ActionPickers { // Codable, Equatable, Hashable
     case scaleBy(dx: Double, dy: Double)
     case none
     case code(() -> ())
-    case setImage(String)
+    case setImage(String, after: Double)
     case animate(images: [String], fps: Double)
 }
 public enum ActionTimer: String, Codable, Equatable {
@@ -165,8 +165,8 @@ public class Action { // Codable, Equatable, Hashable
         return .init(ActionPickers.code(run))
     }
     
-    public static func changeImage(_ name: String) -> Action {
-        return .init(ActionPickers.setImage(name))
+    public static func changeImage(_ name: String, afterSeconds: Double = 0) -> Action {
+        return .init(ActionPickers.setImage(name, after: afterSeconds))
     }
     public static func animate(_ images: [String], fps: Double) -> Action {
         return .init(ActionPickers.animate(images: images, fps: fps))
@@ -242,10 +242,19 @@ public class Action { // Codable, Equatable, Hashable
                 a = SKAction()
             }
             
-        case let .setImage(name):
-            a = SKAction.animate(with: [SKTexture.init(imageNamed: name)], timePerFrame: 0)
+        case let .setImage(name, after):
+            if after == 0 {
+                a = SKAction.animate(with: [SKTexture.init(imageNamed: name).then({ $0.filteringMode = .nearest })], timePerFrame: 0)
+            } else {
+                a = SKAction.sequence([
+                    .wait(forDuration: after),
+                    .animate(with: [SKTexture.init(imageNamed: name).then({ $0.filteringMode = .nearest })], timePerFrame: 0)
+                ])
+            }
         case let .animate(images: i, fps: f):
-            a = SKAction.animate(with: i.map { SKTexture.init(imageNamed: $0) }, timePerFrame: f)
+            a = SKAction.animate(with: i.map {
+                SKTexture.init(imageNamed: $0).then { i in i.filteringMode = .nearest }
+            }, timePerFrame: f)
         case let .moveBy(x: x, y: y):
             let x = x ?? 0
             let y = y ?? 0
