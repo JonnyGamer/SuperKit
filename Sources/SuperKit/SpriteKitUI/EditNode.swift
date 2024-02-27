@@ -56,6 +56,9 @@ public class EditNode {
     public var column: Int {
         get { (node as? Tile)?.column ?? 0 }
     }
+    public var tileScale: Double {
+        get { (node as? Board)?.tileScale ?? 1 }
+    }
     
     public var width: Double {
         get { (node as? Size)?.width ?? .nan }
