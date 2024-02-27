@@ -103,4 +103,48 @@ public class Board: Node, Size {
         fatalError("init(from:) has not been implemented")
     }
     
+    public func switchColor() {
+        if this.color == .black {
+            this.color = .white
+        } else if this.color == .white {
+            this.color = .black
+        }
+    }
+    
+    public func solve(_ speed: Double = 1.0) {
+        
+        var actions: [Action] = []
+        
+        var o : [Bool] = []
+        allTiles {
+            o.append(this.color == .black)
+        }
+        
+        for (id, swit) in o.enumerated() {
+            if swit {
+                actions.append(.sequence([.wait(seconds: 0.01), .code {
+                    self.id(id) {
+                        //self.switchColor()
+                        
+                        let x = id % self.columns
+                        let y = id / self.columns
+                        
+                        for i in 0..<self.columns {
+                            self.find(x: i, y: y) {
+                                self.switchColor()
+                            }
+                        }
+                        for i in 0..<self.rows {
+                            self.find(x: x, y: i) {
+                                self.switchColor()
+                            }
+                        }
+                        self.switchColor()
+                        
+                        
+                    }
+                }]))
+            }
+        }
+    }
 }
