@@ -58,6 +58,7 @@ public class EditNode {
     }
     public var tileScale: Double {
         get { (node as? Board)?.tileScale ?? 1 }
+        set { (node as? Board)?.tileScale = newValue }
     }
     
     public var width: Double {
