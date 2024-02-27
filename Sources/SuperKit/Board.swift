@@ -122,7 +122,7 @@ public class Board: Node, Size {
         
         for (id, swit) in o.enumerated() {
             if swit {
-                actions.append(.sequence([.wait(seconds: 0.01), .code {
+                actions.append(.sequence([.wait(seconds: speed), .code {
                     self.id(id) {
                         //self.switchColor()
                         
