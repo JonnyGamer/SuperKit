@@ -170,7 +170,7 @@ open class Node: Codable {
     
     var defaultScale: Double = 1.0
     /// The scale multiplies the size of the node. A bigger scale means the node apears bigger.
-    public var scale: Double { get { if xScale == yScale { return yScale }; return .nan } set { setScale(newValue) } }
+    open var scale: Double { get { if xScale == yScale { return yScale }; return .nan } set { setScale(newValue) } }
     /// The scale multiplies the size of the node. A bigger scale means the node apears bigger.
     @discardableResult public func setScale(_ newValue: Double, edit: (() -> ())? = nil) -> Self { _edit(newValue, edit, \.xScale, \.yScale) }
     
