@@ -84,6 +84,20 @@ public class Board: Node, Size {
         }
     }
     
+    public func id(_ id: Int,_ activity: @escaping () -> ()) {
+        if id < 0 || id >= columns * rows { return }
+        boxen[id].node {
+            activity()
+        }
+    }
+    
+    public func allTiles(_ run: @escaping () -> ()) {
+        for x in 0..<columns {
+            for y in 0..<rows {
+                find(x: x, y: y, run)
+            }
+        }
+    }
     
     required init(from decoder: Decoder) throws {
         fatalError("init(from:) has not been implemented")
