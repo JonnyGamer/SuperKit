@@ -111,7 +111,7 @@ public class Board: Node, Size {
         }
     }
     
-    public func solve(_ speed: Double = 1.0) {
+    public func solve(_ speed: Double = 1.0) -> Action {
         
         var actions: [Action] = []
         
@@ -146,5 +146,8 @@ public class Board: Node, Size {
                 }]))
             }
         }
+        
+        return .sequence([.wait(seconds: 1.0), .sequence(actions)])
+        
     }
 }
