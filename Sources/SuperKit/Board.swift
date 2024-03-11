@@ -151,3 +151,67 @@ public class Board: Node, Size {
         
     }
 }
+
+
+public extension Array where Element: Hashable {
+    mutating func removeAll(_ these: Element) {
+        self.removeAll { i in
+            i == these
+        }
+    }
+    static func -(lhs: Self, rhs: Self) -> Self {
+        var new = lhs
+        for i in rhs {
+            if new.contains(i) {
+                new.removeAll(i)
+            }
+        }
+        return new
+    }
+    static func -=(lhs: inout Self, rhs: Self) {
+        lhs = lhs - rhs
+    }
+}
+
+
+//public extension Direction {
+//    func opposite() -> Self {
+//        switch self {
+//        case .up: return .down
+//        case .down: return .up
+//        case .left: return .right
+//        case .right: return .left
+//        case .none: return .none
+//        }
+//    }
+//}
+
+public extension Board {
+    func paint(x: Int, y: Int, color: Color) {
+        find(x: x, y: y) {
+            this.color = color
+        }
+    }
+    func paint(_ pos: Pos,_ color: Color) {
+        find(x: pos.x, y: pos.y) {
+            this.color = color
+        }
+    }
+    func positions() -> [Pos] {
+        var l: [Pos] = []
+        for x in 0..<self.columns {
+            for y in 0..<self.columns {
+                l.append(Pos(x, y))
+            }
+        }
+        return l
+    }
+}
+
+public struct Pos: Hashable {
+    public var x: Int, y: Int
+    public init(_ x: Int,_ y: Int) {
+        self.x = x; self.y = y
+    }
+    public static var zero: Self { Pos(0,0) }
+}

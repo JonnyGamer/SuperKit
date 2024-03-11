@@ -38,7 +38,7 @@ public struct Location: Hashable {
         return Location.init(x: x, y: y-1)
     }
     public func moveDirection(_ dir: Direction) -> Location {
-        let (dx, dy) = dir.diff()
+        let (dx, dy) = dir.difference()
         return Location.init(x: x + dx, y: y + dy)
     }
     public static var zero: Self { return .init(x: 0, y: 0) }
@@ -158,7 +158,7 @@ public extension Array {
 
 public enum Direction {
     case up, down, left, right, none
-    func diff() -> (dx: Int, dy: Int) {
+    public func difference() -> (dx: Int, dy: Int) {
         switch self {
         case .down: return (0,-1)
         case .up: return (0,1)
@@ -167,7 +167,7 @@ public enum Direction {
         case .none: return (0,0)
         }
     }
-    func opposite() -> Self {
+    public func opposite() -> Self {
         switch self {
         case .down: return .up
         case .up: return .down
