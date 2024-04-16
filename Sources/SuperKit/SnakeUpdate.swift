@@ -398,6 +398,7 @@ public class Infinite2DGrid {
     public func changeColor(id: Int, color: Color) {
         colorDict[id] = color
     }
+    public init() {}
     public func set(x: Int, y: Int, number: Int) {
         if grid[x] == nil {
             grid[x] = [:]
