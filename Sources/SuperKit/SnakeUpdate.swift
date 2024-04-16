@@ -390,3 +390,76 @@ public class SnakeScene: Scene {
     }
 
 }
+
+
+public class Infinite2DGrid {
+    private var grid: [Int: [Int: Int]] = [:]
+    public var colorDict: [Int : Color] = [0 : Color.white, 1 : Color.black]
+    public func changeColor(id: Int, color: Color) {
+        colorDict[id] = color
+    }
+    public func set(x: Int, y: Int, number: Int) {
+        if grid[x] == nil {
+            grid[x] = [:]
+        }
+        if grid[x]![y] == nil {
+            grid[x]![y] = number
+        }
+        if number == 0 {
+            grid[x]!.removeValue(forKey: y)
+        }
+        if grid[x]!.isEmpty {
+            grid.removeValue(forKey: x)
+        }
+    }
+    public func get(x: Int, y: Int) -> Int {
+        if let colorID = grid[x]?[y] {
+            return colorID
+        }
+        return 0
+    }
+    public func getColor(x: Int, y: Int) -> Color {
+        if let colorID = grid[x]?[y] {
+            return colorDict[colorID] ?? .black
+        }
+        return .white
+    }
+    public func erase(x: Int, y: Int) {
+        set(x: x, y: y, number: 0)
+    }
+    public func allPositions(board: Board? = nil) -> [(x: Int, y: Int, color: Color)] {
+        var pos: [(x: Int, y: Int, color: Color)] = []
+        
+        var maxX: Int = .max
+        var minX: Int = .min
+        var maxY: Int = .max
+        var minY: Int = .min
+        if let b = board {
+            maxX = b.columns
+            minX = 0
+            maxY = b.rows
+            minY = 0
+        }
+        
+        for (x, value) in grid {
+            if x < minX { continue }
+            if x >= maxX { continue }
+            for (y, colorValue) in value {
+                if y < minY { continue }
+                if y >= maxY { continue }
+                pos.append((x, y, colorDict[colorValue] ?? .black))
+            }
+        }
+        return pos
+    }
+}
+
+public extension Pos {
+    func neighbors() -> [Pos] {
+        var n: [Pos] = []
+        for (dx, dy) in [(-1, -1), (-1, 0), (-1, 1), (0, 1), (0, -1), (1, -1), (1, 0), (1, 1)] {
+            n.append(Pos(x + dx, y + dy))
+        }
+        return n
+    }
+}
