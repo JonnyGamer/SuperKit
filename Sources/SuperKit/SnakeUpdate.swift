@@ -464,3 +464,18 @@ public extension Pos {
         return n
     }
 }
+
+public extension Board {
+    func tileTapped(x: Double, y: Double) -> (x: Int, y: Int) {
+        //print(board.x, (1600 - board.width)/2)
+        print((1000 * Double(columns) / Double(rows)))
+        let xOffset = (1600 - width)/2
+        //let newX = (x - xOffset) * Double(columns) / (1000 * Double(columns) / Double(rows))
+        let newX = (x - xOffset) / (1000 / Double(rows))
+        //let newX = (x - board.x) * Double(board.columns) / 1000
+        let intX = Int(newX)
+        let newY = y * Double(rows) / 1000
+        let intY = Int(newY)
+        return (intX, intY)
+    }
+}
