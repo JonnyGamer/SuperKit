@@ -585,7 +585,7 @@ open class EverMazeScene: Scene {
                 ball.layer = 1
                 self.balls.append(ball)
                 self.ballPositions.append(pos)
-                print(ball.x, ball.y)
+                //print(ball.x, ball.y)
             }
             startingPositions = ballPositions
         }
@@ -621,7 +621,7 @@ open class EverMazeScene: Scene {
             if balls.first?.__node__.hasActions() == true { break me }
             let newPositions = everMaze.test_move_multiple(EverPos: ballPositions, d: dir)
             for (i, ball) in balls.enumerated() {
-                print(ball.x, ball.y)
+                //print(ball.x, ball.y)
                 ballPositions[i] = newPositions[i]
                 let oldPosition = (ball.x, ball.y)
                 let newSpot = newPositions[i]
