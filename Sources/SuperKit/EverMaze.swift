@@ -470,7 +470,7 @@ public func greatest_distance<T: Equatable, U: Sequence>(_ o: [T: U]) -> (Int , 
 
 
 
-public class EverMazeScene: Scene {
+open class EverMazeScene: Scene {
 
     public var grid = Infinite2DGrid()
     public var everMaze = MetaEverMaze(width: 8, height: 8)
