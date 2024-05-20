@@ -485,7 +485,7 @@ open class EverMazeScene: Scene {
     public var puzzle: UInt64 = 0//41113288903393604// 1838106507154276587 //2315026132614841384 //14202016909085464784 //4794269601118590273
     public var speed = 0.2
     
-    public func createPuzzle() {
+    open func createPuzzle() {
         
     }
     
