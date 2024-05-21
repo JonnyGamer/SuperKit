@@ -613,7 +613,7 @@ open class EverMazeScene: Scene {
     }
     
     public func swipe(_ key: Key) {
-        let arrows: [Key : EverPos] = [.upArrow : EverPos(0,1), .downArrow : EverPos(0,-1), .rightArrow : EverPos(1,0), .leftArrow : EverPos(-1,0)]
+        let arrows: [Key : EverPos] = [.upArrow : EverPos(0,1), .downArrow : EverPos(0,-1), .rightArrow : EverPos(1,0), .leftArrow : EverPos(-1,0), .w : EverPos(0,1), .s : EverPos(0,-1), .d : EverPos(1,0), .a : EverPos(-1,0)]
         me: if let dir = arrows[key] {
             
             let previousSpots = ballPositions
